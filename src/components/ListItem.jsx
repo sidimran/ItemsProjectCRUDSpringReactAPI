@@ -16,7 +16,9 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
 import SaveIcon from "@mui/icons-material/Save";
 import axios from "axios";
-
+import { Link } from "react-router-dom";
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
 const useStyles = makeStyles((theme) => ({
   table: {
     minWidth: 650,
@@ -98,32 +100,41 @@ const ListItems = () => {
       });
   };
 
-  const updateById = (id) => {
-    console.log("passing id ------------------", id);
-    console.log("-------------------------------", url, bodyParam);
-    axios.put(url + id, bodyParam).then(() => console.log("Update successful"));
-  };
+  // const updateById = (id) => {
+  //   console.log("passing id ------------------", id);
+  //   console.log("-------------------------------", url, bodyParam);
+  //   axios.put(url + id, bodyParam).then(() => console.log("Update successful"));
+  // };
 
-  const saveItemData = () => {
-    var data = {
-      itemname: "Laptop",
-      price: 12345,
-    };
+  // const saveItemData = () => {
+  //   var data = {
+  //     itemname: "Laptop",
+  //     price: 12345,
+  //   };
 
-    axios
-      .post(item_base_url, data)
-      .then((response) => {
-        setItems({
-          itemname: response.data.itemname.data,
-          price: response.data.price.data,
-        });
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  //   axios
+  //     .post(item_base_url, data)
+  //     .then((response) => {
+  //       setItems({
+  //         itemname: response.data.itemname.data,
+  //         price: response.data.price.data,
+  //       });
+  //     })
+  //     .catch((e) => {
+  //       console.log(e);
+  //     });
+  // };
 
   return (
+
+    <>
+    <Link to="/add-items" className="btn btn-primary mb-2">
+    <Stack spacing={2} direction="row">
+      
+      <Button variant="contained">Add New</Button>
+      
+    </Stack>
+      </Link>
     <TableContainer component={Paper} className={classes.tableContainer}>
       <Table className={classes.table} aria-label="simple table">
         <TableHead>
@@ -148,14 +159,15 @@ const ListItems = () => {
               </StyledTableCell>
               <StyledTableCell component={"th"} scope="row">
                 <DeleteIcon onClick={() => deleteItemsById(row.id)} />
-                <EditIcon onClick={() => updateById(row.id)} />
-                <SaveIcon onClick={() => saveItemData()}></SaveIcon>
+                {/* <EditIcon onClick={() => updateById(row.id)} />
+                <SaveIcon onClick={() => saveItemData()}></SaveIcon> */}
               </StyledTableCell>
             </StyledTableRow>
           ))}
         </TableBody>
       </Table>
     </TableContainer>
+    </>
   );
 };
 

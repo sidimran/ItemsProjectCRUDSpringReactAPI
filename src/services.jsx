@@ -13,11 +13,23 @@ class ItemService
 
   deleteItemById(id)
    {
+    // http://localhost:8082/api/v1/items?id=12
 
     // return axios.delete(item_base_url + id);
-        // return axios.delete(item_base_url + "/" + id);
+    
+//return axios.delete(`${item_base_url}?${id}`);
 
-    return axios.delete(item_base_delete_url + id);
+return axios.delete(item_base_delete_url + id)
+     
+
+
+   //  alert(item_base_delete_url + id)
+//alert("HIHI"+`http://localhost:8082/api/v1/items${id}`)
+
+    // return axios.delete(item_base_delete_url + id);
+
+   // return axios.delete(`http://localhost:8082/api/v1/items${id}`);
+
   }
 
   saveItemdata(bodyParam)
